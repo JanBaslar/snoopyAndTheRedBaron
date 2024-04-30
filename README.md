@@ -9,6 +9,6 @@ Snoopy and the Red Baron bude 2D hra inspirovaná komiksovým světem Peanuts. B
 2. Implementace střílení ve formě samostatných projektilů.
 3. Implementace kolize hráčů s projektily a zdraví hráčů.
 4. Implementace kolize hráčů s prostředím a detekce konce hry.
-5. Přidání detailnější grafiky, stilizace prostředí, animace
+5. Přidání detailnější grafiky, hudby a zvukových efektů, stilizace prostředí, animace
 6. (Členitější herní mapa, dynamická kamera)
 7. (Přidání speciálních předmětů, léčení, zbraně)
