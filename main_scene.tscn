@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://or8ik5pnxc8f"]
+
+[ext_resource type="Script" path="res://scripts/Snoopy.gd" id="1_7f5yc"]
+[ext_resource type="Texture2D" uid="uid://cqbyqsqc3c6h2" path="res://graphics/snoopy.png" id="2_yghu0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b0s6g"]
+radius = 65.01
+height = 236.0
+
+[node name="Scene" type="Node2D"]
+
+[node name="Snoopy" type="CharacterBody2D" parent="."]
+position = Vector2(50, 300)
+script = ExtResource("1_7f5yc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Snoopy"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_b0s6g")
+
+[node name="Sprite2D" type="Sprite2D" parent="Snoopy"]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_yghu0")
+
+[node name="Marker2D" type="Marker2D" parent="Snoopy"]
