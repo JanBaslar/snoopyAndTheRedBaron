@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ih3whktswcae"]
+
+[ext_resource type="Script" path="res://scripts/BaronBullet.gd" id="1_4n4hk"]
+[ext_resource type="Texture2D" uid="uid://upb1bttcxfsi" path="res://graphics/bullet.png" id="2_qpl7w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j57uj"]
+size = Vector2(20, 8)
+
+[node name="SnoopyBulletScene" type="Node2D"]
+
+[node name="BaronBullet" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_4n4hk")
+
+[node name="BulletCollisionShape" type="CollisionShape2D" parent="BaronBullet"]
+shape = SubResource("RectangleShape2D_j57uj")
+
+[node name="BulletSprite" type="Sprite2D" parent="BaronBullet"]
+z_index = 2
+rotation = 3.14159
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_qpl7w")

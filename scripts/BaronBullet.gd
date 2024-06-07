@@ -10,4 +10,4 @@ func remove_bullets_out_of_boundaries():
 func _physics_process(delta):
 	"""Bullet game loop"""
 	remove_bullets_out_of_boundaries()
-	position += transform.x * speed * delta
+	position -= transform.x * speed * delta

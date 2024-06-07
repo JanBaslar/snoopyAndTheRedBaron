@@ -9,11 +9,14 @@ size = Vector2(20, 8)
 [node name="SnoopyBulletScene" type="Node2D"]
 
 [node name="SnoopyBullet" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_afotd")
 
 [node name="BulletCollisionShape" type="CollisionShape2D" parent="SnoopyBullet"]
 shape = SubResource("RectangleShape2D_j57uj")
 
 [node name="BulletSprite" type="Sprite2D" parent="SnoopyBullet"]
+z_index = 2
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_5cdek")
