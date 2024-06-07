@@ -1,18 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkt3ccweys7o"]
 
 [ext_resource type="Script" path="res://scripts/SnoopyBullet.gd" id="1_afotd"]
-[ext_resource type="Texture2D" uid="uid://kbkolnilct37" path="res://graphics/rec.png" id="2_l8rk6"]
+[ext_resource type="Texture2D" uid="uid://upb1bttcxfsi" path="res://graphics/bullet.png" id="2_5cdek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j57uj"]
+size = Vector2(20, 8)
 
 [node name="SnoopyBulletScene" type="Node2D"]
 
 [node name="SnoopyBullet" type="Area2D" parent="."]
 script = ExtResource("1_afotd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SnoopyBullet"]
+[node name="BulletCollisionShape" type="CollisionShape2D" parent="SnoopyBullet"]
 shape = SubResource("RectangleShape2D_j57uj")
 
-[node name="Sprite2D" type="Sprite2D" parent="SnoopyBullet"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_l8rk6")
+[node name="BulletSprite" type="Sprite2D" parent="SnoopyBullet"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_5cdek")

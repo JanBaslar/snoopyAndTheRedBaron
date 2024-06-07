@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cqbyqsqc3c6h2" path="res://graphics/snoopy.png" id="2_yghu0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b0s6g"]
-radius = 65.01
-height = 236.0
+radius = 88.0
+height = 300.0
 
 [node name="Scene" type="Node2D"]
 
@@ -13,12 +13,17 @@ height = 236.0
 position = Vector2(50, 300)
 script = ExtResource("1_7f5yc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Snoopy"]
+[node name="SnoopyCollisionShape" type="CollisionShape2D" parent="Snoopy"]
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CapsuleShape2D_b0s6g")
 
-[node name="Sprite2D" type="Sprite2D" parent="Snoopy"]
-scale = Vector2(0.12, 0.12)
+[node name="SnoopySprite" type="Sprite2D" parent="Snoopy"]
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_yghu0")
 
-[node name="Marker2D" type="Marker2D" parent="Snoopy"]
+[node name="Muzzle" type="Marker2D" parent="Snoopy"]
+position = Vector2(60, 0)
+
+[node name="ShootTimer" type="Timer" parent="Snoopy"]
+wait_time = 0.3
+one_shot = true

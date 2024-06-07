@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Boundary="*res://scripts/Boundary.gd"
+Global="*res://scripts/Global.gd"
 
 [display]
 
