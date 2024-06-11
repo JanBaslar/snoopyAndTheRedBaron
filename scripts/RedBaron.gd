@@ -42,6 +42,7 @@ func _physics_process(delta):
 
 func _on_baron_area_area_entered(area):
 	$BaronHit.play()
+	area.get_parent().queue_free()
 	var damage = 1
 	health -= damage
 	update_health_bar()

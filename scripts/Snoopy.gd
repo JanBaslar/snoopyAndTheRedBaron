@@ -35,6 +35,7 @@ func shoot():
 
 func _on_snoopy_area_area_entered(area):
 	$SnoopyHit.play()
+	area.get_parent().queue_free()
 	var damage = 1
 	health -= damage
 	update_health_bar()
