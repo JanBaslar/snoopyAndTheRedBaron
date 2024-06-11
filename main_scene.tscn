@@ -1,13 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://or8ik5pnxc8f"]
+[gd_scene load_steps=15 format=3 uid="uid://or8ik5pnxc8f"]
 
 [ext_resource type="Script" path="res://scripts/Snoopy.gd" id="1_7f5yc"]
 [ext_resource type="Texture2D" uid="uid://cqbyqsqc3c6h2" path="res://graphics/snoopy.png" id="2_yghu0"]
 [ext_resource type="Script" path="res://scripts/RedBaron.gd" id="3_hay8u"]
+[ext_resource type="AudioStream" uid="uid://cjvu1mu7kxedy" path="res://audio/gunshot1.mp3" id="3_oatf4"]
 [ext_resource type="Texture2D" uid="uid://dqsjhg3hnbwma" path="res://graphics/baron.png" id="3_y7tiv"]
+[ext_resource type="AudioStream" uid="uid://bmbcqoav3l17p" path="res://audio/crash.mp3" id="4_e0pw7"]
+[ext_resource type="AudioStream" uid="uid://c28e78lg4otql" path="res://audio/hit.mp3" id="5_fhmr0"]
+[ext_resource type="AudioStream" uid="uid://cg6hx7no236as" path="res://audio/gunshot2.mp3" id="6_yhn3j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0pkq"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itba8"]
+bg_color = Color(0.933333, 0.0705882, 0.0431373, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b0s6g"]
 radius = 88.0
 height = 300.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl086"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hibty"]
+bg_color = Color(0.931873, 0.0701016, 0.0431232, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_34snw"]
 radius = 50.0
@@ -18,10 +34,6 @@ height = 186.0
 [node name="Snoopy" type="CharacterBody2D" parent="."]
 position = Vector2(50, 300)
 script = ExtResource("1_7f5yc")
-
-[node name="SnoopyCollisionShape" type="CollisionShape2D" parent="Snoopy"]
-scale = Vector2(0.5, 0.5)
-shape = SubResource("CapsuleShape2D_b0s6g")
 
 [node name="SnoopySprite" type="Sprite2D" parent="Snoopy"]
 z_index = 1
@@ -35,15 +47,46 @@ position = Vector2(60, 0)
 wait_time = 0.3
 one_shot = true
 
+[node name="SnoopyHealthBar" type="ProgressBar" parent="Snoopy"]
+offset_left = -46.0
+offset_top = -111.0
+offset_right = 50.0
+offset_bottom = -81.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_b0pkq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_itba8")
+max_value = 5.0
+step = 1.0
+value = 5.0
+
+[node name="SnoopyArea" type="Area2D" parent="Snoopy" groups=["Snoopy"]]
+
+[node name="SnoopyCollisionShape" type="CollisionShape2D" parent="Snoopy/SnoopyArea"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_b0s6g")
+
+[node name="SnoopyGunshot" type="AudioStreamPlayer2D" parent="Snoopy"]
+stream = ExtResource("3_oatf4")
+volume_db = -17.829
+pitch_scale = 1.16
+area_mask = 3
+
+[node name="SnoopyCrash" type="AudioStreamPlayer2D" parent="Snoopy"]
+position = Vector2(-1450, -300)
+stream = ExtResource("4_e0pw7")
+volume_db = -29.714
+
+[node name="SnoopyHit" type="AudioStreamPlayer2D" parent="Snoopy"]
+position = Vector2(-1450, -300)
+stream = ExtResource("5_fhmr0")
+volume_db = -22.781
+pitch_scale = 1.5
+
 [node name="RedBaron" type="CharacterBody2D" parent="."]
 position = Vector2(1500, 600)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("3_hay8u")
-
-[node name="BaronCollisionShape" type="CollisionShape2D" parent="RedBaron"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_34snw")
 
 [node name="BaronSprite" type="Sprite2D" parent="RedBaron"]
 scale = Vector2(0.15, 0.15)
@@ -55,3 +98,43 @@ position = Vector2(-100, 0)
 [node name="ShootTimer" type="Timer" parent="RedBaron"]
 wait_time = 0.3
 one_shot = true
+
+[node name="BaronHealthBar" type="ProgressBar" parent="RedBaron"]
+offset_left = -43.0
+offset_top = -88.0
+offset_right = 53.0
+offset_bottom = -58.0
+theme_override_styles/background = SubResource("StyleBoxFlat_wl086")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hibty")
+max_value = 5.0
+step = 1.0
+value = 5.0
+metadata/_edit_use_anchors_ = true
+
+[node name="BaronArea" type="Area2D" parent="RedBaron" groups=["Baron"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="BaronCollisionShape" type="CollisionShape2D" parent="RedBaron/BaronArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_34snw")
+
+[node name="BaronGunshot" type="AudioStreamPlayer2D" parent="RedBaron"]
+stream = ExtResource("6_yhn3j")
+volume_db = -17.828
+pitch_scale = 0.8
+
+[node name="BaronCrash" type="AudioStreamPlayer2D" parent="RedBaron"]
+position = Vector2(-1450, -300)
+stream = ExtResource("4_e0pw7")
+volume_db = -29.714
+
+[node name="BaronHit" type="AudioStreamPlayer2D" parent="RedBaron"]
+position = Vector2(-1450, -300)
+stream = ExtResource("5_fhmr0")
+volume_db = -22.781
+pitch_scale = 1.5
+
+[connection signal="area_entered" from="Snoopy/SnoopyArea" to="Snoopy" method="_on_snoopy_area_area_entered"]
+[connection signal="body_entered" from="Snoopy/SnoopyArea" to="Snoopy" method="_on_snoopy_area_body_entered"]
+[connection signal="area_entered" from="RedBaron/BaronArea" to="RedBaron" method="_on_baron_area_area_entered"]

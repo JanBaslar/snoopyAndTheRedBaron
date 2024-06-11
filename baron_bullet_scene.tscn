@@ -8,9 +8,7 @@ size = Vector2(20, 8)
 
 [node name="SnoopyBulletScene" type="Node2D"]
 
-[node name="BaronBullet" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+[node name="BaronBullet" type="Area2D" parent="." groups=["baron_bullet"]]
 script = ExtResource("1_4n4hk")
 
 [node name="BulletCollisionShape" type="CollisionShape2D" parent="BaronBullet"]
@@ -21,3 +19,6 @@ z_index = 2
 rotation = 3.14159
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_qpl7w")
+
+[connection signal="body_entered" from="BaronBullet" to="BaronBullet" method="_on_body_entered"]
+[connection signal="ready" from="BaronBullet/BulletCollisionShape" to="BaronBullet" method="_on_bullet_collision_shape_ready"]
