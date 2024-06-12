@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://or8ik5pnxc8f"]
+[gd_scene load_steps=18 format=3 uid="uid://or8ik5pnxc8f"]
 
 [ext_resource type="Script" path="res://scripts/Snoopy.gd" id="1_7f5yc"]
 [ext_resource type="Texture2D" uid="uid://cqbyqsqc3c6h2" path="res://graphics/snoopy.png" id="2_yghu0"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://c28e78lg4otql" path="res://audio/hit.mp3" id="5_fhmr0"]
 [ext_resource type="AudioStream" uid="uid://cg6hx7no236as" path="res://audio/gunshot2.mp3" id="6_yhn3j"]
 [ext_resource type="Texture2D" uid="uid://ctu5c1mq0rwvt" path="res://graphics/sky.jpg" id="9_qarm1"]
+[ext_resource type="AudioStream" uid="uid://b08pbb3rin241" path="res://audio/linusAndLucy.mp3" id="10_b2hdu"]
+[ext_resource type="Script" path="res://scripts/BackgroundMusic.gd" id="11_q4lkf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0pkq"]
 bg_color = Color(0, 0, 0, 1)
@@ -136,6 +138,13 @@ position = Vector2(798, 439)
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("9_qarm1")
 
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_b2hdu")
+volume_db = -5.0
+autoplay = true
+script = ExtResource("11_q4lkf")
+
 [connection signal="area_entered" from="Snoopy/SnoopyArea" to="Snoopy" method="_on_snoopy_area_area_entered"]
 [connection signal="body_entered" from="Snoopy/SnoopyArea" to="Snoopy" method="_on_snoopy_area_body_entered"]
 [connection signal="area_entered" from="RedBaron/BaronArea" to="RedBaron" method="_on_baron_area_area_entered"]
+[connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="_on_finished"]

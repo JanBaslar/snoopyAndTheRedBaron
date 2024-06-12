@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcdynfaksv5v4"]
+[gd_scene load_steps=5 format=3 uid="uid://bcdynfaksv5v4"]
 
 [ext_resource type="Script" path="res://Menu.gd" id="1_0q308"]
 [ext_resource type="Texture2D" uid="uid://c8xh511n1q4vn" path="res://graphics/banner.png" id="2_rovkf"]
+[ext_resource type="AudioStream" uid="uid://b103agshsmll4" path="res://audio/menuTheme.mp3" id="3_6ndl4"]
+[ext_resource type="Script" path="res://MenuMusic.gd" id="4_os7y1"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -43,6 +45,13 @@ z_index = -99
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_rovkf")
 offset = Vector2(1650, 900)
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(150, 617)
+stream = ExtResource("3_6ndl4")
+volume_db = -10.0
+autoplay = true
+script = ExtResource("4_os7y1")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
