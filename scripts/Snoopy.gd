@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed = Global.PLAYER_SPEED
 @export var rotation_speed = Global.ROTATION_SPEED
-var health = 5
+var health = Global.HEALTH
 var rotation_direction = 0
 const bullet = preload("res://snoopy_bullet_scene.tscn")
 
@@ -32,38 +32,30 @@ func shoot():
 		owner.add_child(b)
 		b.transform = $Muzzle.global_transform
 
-
 func _on_snoopy_area_area_entered(area):
+	"""Ivokes after hit"""
 	$SnoopyHit.play()
 	area.get_parent().queue_free()
-	var damage = 1
-	health -= damage
+	health -= Global.DAMAGE
 	update_health_bar()
 
 func update_health_bar():
-	var health_bar = $SnoopyHealthBar as ProgressBar
-	if health_bar:
-		health_bar.value = health
-		if health <= 0:
-			$SnoopyCrash.play()
-			print("Snoopy zemřel")
-			fall_down()
+	"""Updates players health"""
+	$SnoopyHealthBar.value = health
+	if health <= 0:
+		$SnoopyCrash.play()
+		fall_down()
 
 func fall_down():
+	"""Fall down animation when player is damaged."""
 	var screen_bottom = get_viewport_rect().size.y
-	var fall_rate = 30
-	var interval = 0.05
-
 	while position.y < screen_bottom:
-		position.y += fall_rate
-		var timer = get_tree().create_timer(interval)
+		position.y += Global.FALL_RATE
+		var timer = get_tree().create_timer(Global.FALL_INTERVAL)
 		await timer.timeout
-		if position.y >= screen_bottom - fall_rate:
+		if position.y >= screen_bottom - Global.FALL_RATE:
 			break
-
 	get_tree().change_scene_to_file("res://menu.tscn")
-
-
 
 
 func _physics_process(delta):

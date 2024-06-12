@@ -3,3 +3,9 @@ const BULLET_SPEED = 1000
 const ROTATION_SPEED = 4
 
 const DEAD_AREA = 3000
+
+const HEALTH = 10
+const DAMAGE = 1
+
+const FALL_RATE = 15
+const FALL_INTERVAL = 0.01

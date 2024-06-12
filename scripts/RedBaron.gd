@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed = -Global.PLAYER_SPEED
 @export var rotation_speed = Global.ROTATION_SPEED
-var health = 5
+var health = Global.HEALTH
 var rotation_direction = 0
 const bullet = preload("res://baron_bullet_scene.tscn")
 
@@ -31,6 +31,32 @@ func shoot():
 		owner.add_child(b)
 		b.transform = $Muzzle.global_transform
 
+func _on_baron_area_area_entered(area):
+	"""Ivokes after hit"""
+	$BaronHit.play()
+	area.get_parent().queue_free()
+	health -= Global.DAMAGE
+	update_health_bar()
+
+func update_health_bar():
+	"""Updates players health"""
+	$BaronHealthBar.value = health
+	if health <= 0:
+		$BaronCrash.play()
+		fall_down()
+
+func fall_down():
+	"""Fall down animation when player is damaged."""
+	var screen_bottom = get_viewport_rect().size.y
+	while position.y < screen_bottom:
+		position.y += Global.FALL_RATE
+		var timer = get_tree().create_timer(Global.FALL_INTERVAL)
+		await timer.timeout
+		if position.y >= screen_bottom - Global.FALL_RATE:
+			break
+	get_tree().change_scene_to_file("res://menu.tscn")
+
+
 func _physics_process(delta):
 	"""Player game loop"""
 	get_input()
@@ -38,35 +64,3 @@ func _physics_process(delta):
 	correct_rotation()
 	shoot()
 	move_and_slide()
-
-
-func _on_baron_area_area_entered(area):
-	$BaronHit.play()
-	area.get_parent().queue_free()
-	var damage = 1
-	health -= damage
-	update_health_bar()
-
-func update_health_bar():
-	var health_bar = $BaronHealthBar as ProgressBar
-	if health_bar:
-		health_bar.value = health
-		if health <= 0:
-			$BaronCrash.play()
-			print("Snoopy zemřel")
-			fall_down()
-
-
-func fall_down():
-	var screen_bottom = get_viewport_rect().size.y
-	var fall_rate = 30
-	var interval = 0.05
-
-	while position.y < screen_bottom:
-		position.y += fall_rate
-		var timer = get_tree().create_timer(interval)
-		await timer.timeout
-		if position.y >= screen_bottom - fall_rate:
-			break
-
-	get_tree().change_scene_to_file("res://menu.tscn")

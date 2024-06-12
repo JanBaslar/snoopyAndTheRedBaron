@@ -55,9 +55,9 @@ offset_bottom = -81.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_b0pkq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_itba8")
-max_value = 5.0
+max_value = 10.0
 step = 1.0
-value = 5.0
+value = 10.0
 
 [node name="SnoopyArea" type="Area2D" parent="Snoopy" groups=["Snoopy"]]
 
@@ -67,20 +67,17 @@ shape = SubResource("CapsuleShape2D_b0s6g")
 
 [node name="SnoopyGunshot" type="AudioStreamPlayer2D" parent="Snoopy"]
 stream = ExtResource("3_oatf4")
-volume_db = -17.829
-pitch_scale = 1.16
+volume_db = -15.0
 area_mask = 3
 
 [node name="SnoopyCrash" type="AudioStreamPlayer2D" parent="Snoopy"]
 position = Vector2(-1450, -300)
 stream = ExtResource("4_e0pw7")
-volume_db = -29.714
 
 [node name="SnoopyHit" type="AudioStreamPlayer2D" parent="Snoopy"]
 position = Vector2(-1450, -300)
 stream = ExtResource("5_fhmr0")
-volume_db = -22.781
-pitch_scale = 1.5
+volume_db = -10.0
 
 [node name="RedBaron" type="CharacterBody2D" parent="."]
 position = Vector2(1500, 600)
@@ -106,9 +103,9 @@ offset_right = 53.0
 offset_bottom = -58.0
 theme_override_styles/background = SubResource("StyleBoxFlat_wl086")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hibty")
-max_value = 5.0
+max_value = 10.0
 step = 1.0
-value = 5.0
+value = 10.0
 metadata/_edit_use_anchors_ = true
 
 [node name="BaronArea" type="Area2D" parent="RedBaron" groups=["Baron"]]
@@ -121,19 +118,16 @@ shape = SubResource("CapsuleShape2D_34snw")
 
 [node name="BaronGunshot" type="AudioStreamPlayer2D" parent="RedBaron"]
 stream = ExtResource("6_yhn3j")
-volume_db = -17.828
-pitch_scale = 0.8
+volume_db = -15.0
 
 [node name="BaronCrash" type="AudioStreamPlayer2D" parent="RedBaron"]
 position = Vector2(-1450, -300)
 stream = ExtResource("4_e0pw7")
-volume_db = -29.714
 
 [node name="BaronHit" type="AudioStreamPlayer2D" parent="RedBaron"]
 position = Vector2(-1450, -300)
 stream = ExtResource("5_fhmr0")
-volume_db = -22.781
-pitch_scale = 1.5
+volume_db = -10.0
 
 [connection signal="area_entered" from="Snoopy/SnoopyArea" to="Snoopy" method="_on_snoopy_area_area_entered"]
 [connection signal="body_entered" from="Snoopy/SnoopyArea" to="Snoopy" method="_on_snoopy_area_body_entered"]
