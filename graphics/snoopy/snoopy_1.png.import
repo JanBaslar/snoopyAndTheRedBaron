@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqsjhg3hnbwma"
-path="res://.godot/imported/baron.png-5157f8c664baf7f0e30411a978908935.ctex"
+uid="uid://bkuw0a41s8ijf"
+path="res://.godot/imported/snoopy_1.png-73bac974e9c15a2c9b039497d94063ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/baron.png"
-dest_files=["res://.godot/imported/baron.png-5157f8c664baf7f0e30411a978908935.ctex"]
+source_file="res://graphics/snoopy/snoopy_1.png"
+dest_files=["res://.godot/imported/snoopy_1.png-73bac974e9c15a2c9b039497d94063ef.ctex"]
 
 [params]
 
