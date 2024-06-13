@@ -1,16 +1,40 @@
-[gd_scene load_steps=18 format=3 uid="uid://or8ik5pnxc8f"]
+[gd_scene load_steps=24 format=3 uid="uid://or8ik5pnxc8f"]
 
 [ext_resource type="Script" path="res://scripts/Snoopy.gd" id="1_7f5yc"]
-[ext_resource type="Texture2D" uid="uid://cqbyqsqc3c6h2" path="res://graphics/snoopy.png" id="2_yghu0"]
+[ext_resource type="Texture2D" uid="uid://bkuw0a41s8ijf" path="res://graphics/snoopy/snoopy_1.png" id="3_28lvj"]
 [ext_resource type="Script" path="res://scripts/RedBaron.gd" id="3_hay8u"]
 [ext_resource type="AudioStream" uid="uid://cjvu1mu7kxedy" path="res://audio/gunshot1.mp3" id="3_oatf4"]
-[ext_resource type="Texture2D" uid="uid://dqsjhg3hnbwma" path="res://graphics/baron.png" id="3_y7tiv"]
 [ext_resource type="AudioStream" uid="uid://bmbcqoav3l17p" path="res://audio/crash.mp3" id="4_e0pw7"]
+[ext_resource type="Texture2D" uid="uid://cs5adpy4c210m" path="res://graphics/snoopy/snoopy_3.png" id="4_novw7"]
+[ext_resource type="Texture2D" uid="uid://w6qnqu3s8his" path="res://graphics/snoopy/snoopy_2.png" id="5_5xjgw"]
 [ext_resource type="AudioStream" uid="uid://c28e78lg4otql" path="res://audio/hit.mp3" id="5_fhmr0"]
 [ext_resource type="AudioStream" uid="uid://cg6hx7no236as" path="res://audio/gunshot2.mp3" id="6_yhn3j"]
+[ext_resource type="Texture2D" uid="uid://cvux8ygy47vv4" path="res://graphics/baron/baron_1.png" id="8_rccsr"]
+[ext_resource type="Texture2D" uid="uid://deuy8447yaeyg" path="res://graphics/baron/baron_2.png" id="9_hh3a2"]
 [ext_resource type="Texture2D" uid="uid://ctu5c1mq0rwvt" path="res://graphics/sky.jpg" id="9_qarm1"]
 [ext_resource type="AudioStream" uid="uid://b08pbb3rin241" path="res://audio/linusAndLucy.mp3" id="10_b2hdu"]
+[ext_resource type="Texture2D" uid="uid://m56lieinovac" path="res://graphics/baron/baron_3.png" id="10_sndpc"]
 [ext_resource type="Script" path="res://scripts/BackgroundMusic.gd" id="11_q4lkf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s4d5x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_28lvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_novw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5xjgw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_novw7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0pkq"]
 bg_color = Color(0, 0, 0, 1)
@@ -21,6 +45,26 @@ bg_color = Color(0.933333, 0.0705882, 0.0431373, 1)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b0s6g"]
 radius = 88.0
 height = 300.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8lbvi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_rccsr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hh3a2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_sndpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hh3a2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl086"]
 bg_color = Color(0, 0, 0, 1)
@@ -38,10 +82,11 @@ height = 186.0
 position = Vector2(50, 300)
 script = ExtResource("1_7f5yc")
 
-[node name="SnoopySprite" type="Sprite2D" parent="Snoopy"]
-z_index = 1
+[node name="SnoopyAnimatedSprite" type="AnimatedSprite2D" parent="Snoopy"]
 scale = Vector2(0.15, 0.15)
-texture = ExtResource("2_yghu0")
+sprite_frames = SubResource("SpriteFrames_s4d5x")
+autoplay = "default"
+frame_progress = 0.30747
 
 [node name="Muzzle" type="Marker2D" parent="Snoopy"]
 position = Vector2(60, 0)
@@ -63,6 +108,7 @@ step = 1.0
 value = 10.0
 
 [node name="SnoopyArea" type="Area2D" parent="Snoopy" groups=["Snoopy"]]
+visible = false
 
 [node name="SnoopyCollisionShape" type="CollisionShape2D" parent="Snoopy/SnoopyArea"]
 scale = Vector2(0.5, 0.5)
@@ -88,9 +134,11 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("3_hay8u")
 
-[node name="BaronSprite" type="Sprite2D" parent="RedBaron"]
+[node name="BaronAnimatedSprite" type="AnimatedSprite2D" parent="RedBaron"]
 scale = Vector2(0.15, 0.15)
-texture = ExtResource("3_y7tiv")
+sprite_frames = SubResource("SpriteFrames_8lbvi")
+autoplay = "default"
+frame_progress = 0.111861
 
 [node name="Muzzle" type="Marker2D" parent="RedBaron"]
 position = Vector2(-100, 0)
@@ -112,6 +160,7 @@ value = 10.0
 metadata/_edit_use_anchors_ = true
 
 [node name="BaronArea" type="Area2D" parent="RedBaron" groups=["Baron"]]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
